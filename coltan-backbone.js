@@ -51,9 +51,13 @@ _.extend(Backbone.View.prototype,{
     for (var key in events) {
       var method = this[events[key]];
       if (!method) throw new Error('Event "' + events[key] + '" does not exist');
-      var eventName = key;
       method = _.bind(method, this);
-      this.el.addEventListener(eventName,method);
+      var eventName = key.split(' ');
+      if(eventName.length === 1){
+        this.el.addEventListener(eventName,method);
+      } else {
+        this.delegate(select,eventName,method);
+      }
     }
   },
     

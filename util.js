@@ -2,7 +2,7 @@ if (typeof module !== 'undefined' && module.exports) {
   Ti.API.debug('[COLTAN] Exporting `utils` as CommonJS module');
 } else {
   Ti.API.debug('[COLTAN] Exporting `utils` with `Ti.include`');
-  var exports = Coltan.Util = {};
+  var exports = Coltan.util = {};
 }
 
 
