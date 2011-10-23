@@ -26,6 +26,7 @@ Ti.include('util.js');
 Ti.include('http.js');
 Ti.include('geo.js');
 Ti.include('ui/ui.js');
+Ti.include('map/map.js');
 Ti.include('events.js');
 Ti.include('apps.js');
 Ti.include('coltan-backbone.js');
