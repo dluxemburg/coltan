@@ -37,7 +37,10 @@ Coltan.Geo.getCurrentLocation = function(fn){
   });
 };
 
-Coltan.Geo.customReverseGeocode = function(coords,fn){
+Coltan.Geo.customReverseGeocode = function(coords,fn,context){
+  if(fn && context){
+    fn = _.bind(context,fn);
+  }
   Coltan.Geo.GoogleMapClient.executeRequest({
     uri:'/maps/api/geocode/json',  
     params:{

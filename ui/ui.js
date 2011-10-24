@@ -42,7 +42,41 @@ var createByTagName = Coltan.UI.createByTagName = function(tagName,attributes){
    });
  };
  
+ /**
+  * Colors
+  */
+ 
+ 
  Coltan.colors = {
    navRed:'#EE0000',
    navBlue:'#5656FF'
  }
+ 
+ /**
+  * Tables
+  */
+  
+  Coltan.UI.tableViewConfirmDelete = function(opts,table,callback){
+    opts = opts || {};
+    var fn = function(deletion){
+      // var self = this;
+      var dialog = Titanium.UI.createAlertDialog(_.extend({
+        title: 'Are You Sure?',
+        message: 'This item will be deleted.',
+        buttonNames: ["Yes, remove", "No, don't"],
+        cancel: 1
+      },opts));
+      dialog.addEventListener('click', function(event) {
+        if(event.index === 1){
+          table.appendRow(deletion.row);
+        }else if(typeof(callback) === 'function'){
+          callback(function(){
+            table.appendRow(deletion.row);
+          });
+        };
+      });
+      dialog.show();
+    }
+    return fn;
+  };
+ 
