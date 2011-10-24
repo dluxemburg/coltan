@@ -8,8 +8,8 @@ if (typeof module !== 'undefined' && module.exports) {
 exports.addWindowMessages = function(window,options){
   options = options || {};
   window.messageWin = Titanium.UI.createWindow({
-  	height:30,
-  	width:250,
+  	height:50,
+  	width:270,
   	bottom:70,
   	borderRadius:10,
   	touchEnabled:false,
@@ -20,11 +20,11 @@ exports.addWindowMessages = function(window,options){
   	Titanium.UI.LANDSCAPE_RIGHT
   	]
   });
-  window.messageWin.durationShow = options.durationShow || 1500;
-  window.messageWin.durationFade = options.durationFade || 750;
+  window.messageWin.durationShow = options.durationShow || 2000;
+  window.messageWin.durationFade = options.durationFade || 1500;
   window.messageView = Titanium.UI.createView({
-  	height:30,
-  	width:250,
+  	height:50,
+  	width:270,
   	borderRadius:10,
   	backgroundColor:'#000',
   	opacity:0.7,
@@ -37,8 +37,10 @@ exports.addWindowMessages = function(window,options){
   	height:'auto',
   	font:{
   		fontFamily:'Helvetica Neue',
-  		fontSize:13
+  		fontSize:14
   	},
+  	left:10,
+  	right:10,
   	textAlign:'center'
   }); 
   window.messageWin.add(window.messageView);

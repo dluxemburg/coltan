@@ -130,3 +130,31 @@ Backbone.sync = function(method, model, options) {
   
   return model._APIClient.executeRequest(obj,callback);
 };
+
+/**
+ * View mixins
+ */
+
+
+Coltan.Backbone = {};
+
+Coltan.Backbone.WindowShade = {
+  showWindowShade:function(){
+    this.windowShade.show();
+    this.windowShade.touchEnabled = true;
+  },
+  hideWindowShade:function(){
+    this.windowShade.hide();
+    this.windowShade.touchEnabled = false;
+  },
+  addWindowShade:function(options,handle){
+    this.windowShade = Ti.UI.createView(_.extend({
+      name:'windowShade',
+      backgroundColor:'#000',
+      opacity:0.5
+    },options));
+    this.el.add(this.windowShade);
+    this.windowShade.hide();
+    if(handle && this.handleElement) this.handleElement(this.windowShade);
+  }
+};

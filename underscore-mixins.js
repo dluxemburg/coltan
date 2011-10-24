@@ -13,5 +13,8 @@ _.mixin({
     if(_.isIos()) composite = _.extend(options.defaults,options.ios);
     if(_.isAndroid()) composite = _.extend(options.defaults,options.android);
     return _.extend(composite,options.passed);
+  },
+  capitalize:function(str){
+    return str[0].toUpperCase() + str.slice(1);
   }
 })
