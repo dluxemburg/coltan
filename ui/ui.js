@@ -48,7 +48,7 @@ var createByTagName = Coltan.UI.createByTagName = function(tagName,attributes){
  
  
  Coltan.colors = {
-   navRed:'#EE0000',
+   navRed:'#BD1421',
    navBlue:'#5656FF'
  }
  
@@ -80,3 +80,21 @@ var createByTagName = Coltan.UI.createByTagName = function(tagName,attributes){
     return fn;
   };
  
+  /**
+   * Misc
+   */
+  
+   Coltan.UI.createOverlayArea = function(opts){
+     opts.height = opts.height || 'auto';
+     opts.width = opts.width || 'auto';
+     var overlayArea = Ti.UI.createView(opts);
+     overlayArea.overlay = Ti.UI.createView({
+       height:opts.height,
+       width:opts.width,
+       backgroundColor:'#000',
+       opacity:0.75
+     });
+     overlayArea.add(overlayArea.overlay);
+     return overlayArea;
+   };
+  

@@ -4,6 +4,8 @@
  * MIT licensed
  */
 
+Ti.API.info('Loading `Coltan` shared resource folder');
+
 var Coltan = {};
 
 Coltan.VERSION = '0.1';
@@ -30,3 +32,5 @@ Ti.include('map/map.js');
 Ti.include('events.js');
 Ti.include('apps.js');
 Ti.include('coltan-backbone.js');
+
+Coltan.info('`Coltan` resources successfully loaded');
