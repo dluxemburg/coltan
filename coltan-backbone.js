@@ -2,6 +2,12 @@
  * Extend/modify `Backbone.View` to work in Titanium
  * environment.
  */
+ 
+/**
+ * Need access to `viewOptions` for changes to `_configure`.
+ */
+
+var viewOptions = ['model', 'collection', 'el', 'id', 'attributes', 'className', 'tagName'];
 
 _.extend(Backbone.View.prototype,{
   
@@ -54,12 +60,32 @@ _.extend(Backbone.View.prototype,{
       method = _.bind(method, this);
       var eventName = key.split(' ');
       if(eventName.length === 1){
-        this.el.addEventListener(eventName,method);
+        this.el.addEventListener(eventName[0],method);
       } else {
-        this.delegate(select,eventName,method);
+        if(_.isFunction(this.handleDelegate)) {
+          this.handleDelegate(eventName[1],eventName[0],method);
+        } else {
+          Coltan.warn("View instance tried to delegate events but it's not a Coltan.Events.Proxy");
+        }
       }
     }
   },
+  
+  /**
+   * Hijacking `_configure` for the opportunity to **conditionally** (based
+   * on options) assign a `Coltan.Events.Proxy` methods to the view instance.
+   * (Need to include `viewOptions` for local access as well.)
+   */
+  
+   _configure : function(options) {
+     if (this.options) options = _.extend({}, this.options, options);
+     for (var i = 0, l = viewOptions.length; i < l; i++) {
+       var attr = viewOptions[i];
+       if (options[attr]) this[attr] = options[attr];
+     }
+     this.options = options;
+     if(this.options.coltanProxy === true) Coltan.Events.createProxy(this);
+   },
     
   /**
    * Existing `_ensureElement` method includes DOM-specific conditional
@@ -76,8 +102,8 @@ _.extend(Backbone.View.prototype,{
     if (!this.el) {
       var attrs = this.attributes || {};
       //if (this.id) attrs.id = this.id;
-      //if (this.className) attrs['class'] = this.className;
-      this.el = this.make(this.tagName, attrs);
+      //if (this.className) attrs.className = this.id;
+      this.el = this.make(this.tagName, attrs);     
     } 
   }
 });
