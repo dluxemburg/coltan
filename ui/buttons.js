@@ -25,8 +25,8 @@ exports.createCustomButton = function(opts){
       title:'',
       height:opts.height,
     	width:opts.width,
-      backgroundImage:'/Coltan/ui/images/gradient-button-back.png',
-      backgroundSelectedImage:'/Coltan/ui/images/gradient-button-back-down.png',
+      backgroundImage:'/coltan/ui/images/gradient-button-back.png',
+      backgroundSelectedImage:'/coltan/ui/images/gradient-button-back-down.png',
       borderColor:'#666',
       borderWidth:opts.borderWidth,
       borderRadius:opts.borderRadius,
@@ -38,7 +38,7 @@ exports.createCustomButton = function(opts){
       title:'',
       height:opts.height,
     	width:opts.width,
-      backgroundImage:'/Coltan/ui/images/gradient-button-back.png',
+      backgroundImage:'/coltan/ui/images/gradient-button-back.png',
       borderColor:'#666',
       borderWidth:opts.borderWidth,
       borderRadius:opts.borderRadius,
@@ -86,14 +86,14 @@ exports.createCustomButton = function(opts){
   }
   if(_.isAndroid()){
     button.turnOn = function(){
-      this.backgroundImage = '/Coltan/ui/images/gradient-button-back-down.png';
+      this.backgroundImage = '/coltan/ui/images/gradient-button-back-down.png';
       this.color = '#000';
       if(this._imageDown){
         this.label.image = this._imageDown;
       }
     };
     button.turnOff = function(){
-      this.backgroundImage = '/Coltan/ui/images/gradient-button-back.png';
+      this.backgroundImage = '/coltan/ui/images/gradient-button-back.png';
       this.color = '#333';
       if(this._imageUp){
         this.label.image = this._imageUp;
@@ -140,7 +140,7 @@ exports.createTabBar = function(opts){
   var width = Math.round(opts.width/opts.labels.length);
   tabBar.buttons = [];
   _(opts.labels).each(function(label,i){
-    var button = Coltan.UI.createCustomButton({
+    var button = coltan.UI.createCustomButton({
       type:'tabBar',
       borderWidth:0,
       borderRadius:opts.borderRadius,
@@ -201,7 +201,7 @@ exports.createDisplayButton = function(opts){
     }
   });
   var arrow = Ti.UI.createImageView({
-    image:'/Coltan/ui/images/button-arrow.png',
+    image:'/coltan/ui/images/button-arrow.png',
     width:8,
     height:13,
     right:10,
@@ -212,15 +212,15 @@ exports.createDisplayButton = function(opts){
   if(_.isIos()){
     button = Ti.UI.createButton({
       height:opts.height,
-      backgroundImage:'/Coltan/ui/images/gradient-button-back-down.png',
-      backgroundSelectedImage:'/Coltan/ui/images/ios-button-select.png',
+      backgroundImage:'/coltan/ui/images/gradient-button-back-down.png',
+      backgroundSelectedImage:'/coltan/ui/images/ios-button-select.png',
     	width:opts.width,
       borderRadius:5,
     });
   } else {
     button = Ti.UI.createView({
       height:opts.height,
-      backgroundImage:'/Coltan/ui/images/gradient-button-back-down.png',
+      backgroundImage:'/coltan/ui/images/gradient-button-back-down.png',
     	width:opts.width,
       borderRadius:5
     });
@@ -232,21 +232,21 @@ exports.createDisplayButton = function(opts){
   }
   button.addEventListener('touchstart',function(){
     if(_.isAndroid()){
-      button.backgroundImage = '/Coltan/ui/images/android-button-select.png';
+      button.backgroundImage = '/coltan/ui/images/android-button-select.png';
     } else {
       value.color = '#fff';
       value.shadowColor = '#333';
-      arrow.image = '/Coltan/ui/images/button-arrow-white.png';
+      arrow.image = '/coltan/ui/images/button-arrow-white.png';
     }
   });
   button.addEventListener('touchend',function(){
     if(_.isAndroid()){
-      button.backgroundImage = '/Coltan/ui/images/gradient-button-back-down.png';
+      button.backgroundImage = '/coltan/ui/images/gradient-button-back-down.png';
       button.fireEvent('click');
     } else {
       value.color = '#000';
       value.shadowColor = '#fff';
-      arrow.image = '/Coltan/ui/images/button-arrow.png';
+      arrow.image = '/coltan/ui/images/button-arrow.png';
     }
   });
   return button;

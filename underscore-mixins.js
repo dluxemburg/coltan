@@ -15,6 +15,7 @@ _.mixin({
     return _.extend(composite,options.passed);
   },
   capitalize:function(str){
+    if(!str || _.isEmpty(str)) return '';
     return str[0].toUpperCase() + str.slice(1);
   }
 })

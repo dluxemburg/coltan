@@ -8,7 +8,7 @@ if (typeof module !== 'undefined' && module.exports) {
 exports.addWindowMessages = function(window,options){
   options = options || {};
   window.messageWin = Titanium.UI.createWindow({
-  	height:50,
+  	height:60,
   	width:270,
   	bottom:70,
   	borderRadius:10,
@@ -20,10 +20,10 @@ exports.addWindowMessages = function(window,options){
   	Titanium.UI.LANDSCAPE_RIGHT
   	]
   });
-  window.messageWin.durationShow = options.durationShow || 2000;
-  window.messageWin.durationFade = options.durationFade || 1500;
+  window.messageWin.durationShow = options.durationShow || 3000;
+  window.messageWin.durationFade = options.durationFade || 1000;
   window.messageView = Titanium.UI.createView({
-  	height:50,
+  	height:60,
   	width:270,
   	borderRadius:10,
   	backgroundColor:'#000',
@@ -46,18 +46,24 @@ exports.addWindowMessages = function(window,options){
   window.messageWin.add(window.messageView);
   window.messageWin.add(window.messageLabel);
   window.addEventListener('pop_message',popMessageHandler);
+  
 }
 
 var popMessageHandler = function(event){
   var self = this;
   var durationShow = event.durationShow || self.messageWin.durationShow;
   var durationFade = event.durationFade || self.messageWin.durationFade;
+  var anim = Ti.UI.createAnimation({
+    duration:durationFade,
+    opacity:0
+  })
   self.messageLabel.text = event.message;   
+  self.opacity = 1;
   self.messageWin.open();
   setTimeout(function(){
-		self.messageWin.close({
-		  opacity:0,
-		  duration:durationFade
-		});
-	},durationShow);
+    self.messageWin.animate(anim);
+    setTimeout(function(){
+      self.messageWin.close();
+    },durationFade);
+  },durationShow);
 };
