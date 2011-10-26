@@ -105,7 +105,7 @@ Coltan.Geo.customLocationSearch = function(str,fn){
 Coltan.Geo.createGoogleMapClient = function(){
   Coltan.Geo.GoogleMapClient = new Coltan.HTTP.APIClient({
     baseUrl:'http://maps.googleapis.com',
-    logLevel:3
+    logLevel:1
   });
 };
 

@@ -16,7 +16,7 @@ exports.createStandardButton = function(opts){
 }
 
 exports.createCustomButton = function(opts){
-  opts.fontSize = opts.fontSize || Math.ceil(opts.height*(0.33));
+  opts.fontSize = opts.fontSize || Math.ceil(opts.height*(0.5));
   opts.borderRadius = opts.borderRadius || (_.isIos() ? 10 : 5);
   opts.borderWidth = opts.borderWidth || 1;
   var button
@@ -33,6 +33,16 @@ exports.createCustomButton = function(opts){
       backgroundColor:'#ddd',
       style:1
     });
+    button.disableButton = function(){
+      this.disabled = true;
+      this.touchEnabled = false;
+      this.opacity = 0.8;
+    };
+    button.enabledButton = function(){
+      this.disabled = false;
+      this.touchEnabled = true;
+      this.opacity = 1;
+    };
   } else {
     button = Ti.UI.createView({
       title:'',
@@ -107,6 +117,7 @@ exports.createCustomButton = function(opts){
       }
       this.fireEvent('click');
     });
+    
   }
 
   button.add(button.label);
