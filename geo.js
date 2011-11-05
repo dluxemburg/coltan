@@ -1,12 +1,12 @@
 Coltan.Geo = {};
 
-Coltan.Geo.getCurrentLocation = function(fn){
+Coltan.Geo.getCurrentLocation = function(fn,purpose){
   Coltan.debug('getting location');
   Coltan.debug('Ti.Platform.model = '+Ti.Platform.model);
   Coltan.debug('Ti.Platform.name = '+Ti.Platform.name);
   Coltan.debug('Ti.Geolocation.locationServicesEnabled = '+Ti.Geolocation.locationServicesEnabled);
   if(_.isIos()){
-    Ti.Geolocation.purpose = Coltan.Geo.purpose;
+    Ti.Geolocation.purpose = purpose || Coltan.Geo.purpose;
   }
 
   Ti.Geolocation.getCurrentPosition(function(e) {

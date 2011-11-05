@@ -20,8 +20,8 @@ exports.addWindowMessages = function(window,options){
   	Titanium.UI.LANDSCAPE_RIGHT
   	]
   });
-  window.messageWin.durationShow = options.durationShow || 3000;
-  window.messageWin.durationFade = options.durationFade || 1000;
+  window.messageWin.durationShow = options.durationShow || 2000;
+  window.messageWin.durationFade = options.durationFade || 500;
   window.messageView = Titanium.UI.createView({
   	height:60,
   	width:270,

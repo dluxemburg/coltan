@@ -31,6 +31,7 @@ Ti.include('ui/ui.js');
 Ti.include('map/map.js');
 Ti.include('events.js');
 Ti.include('apps.js');
+Ti.include('apn.js');
 Ti.include('coltan-backbone.js');
 
 Coltan.info('`Coltan` resources successfully loaded');

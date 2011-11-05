@@ -33,6 +33,11 @@ exports.createCustomButton = function(opts){
       backgroundColor:'#ddd',
       style:1
     });
+    ['top','bottom','left','right'].forEach(function(p){
+      if(opts[p]){
+        button[p] = opts[p];
+      }
+    });
     button.disableButton = function(){
       this.disabled = true;
       this.touchEnabled = false;
@@ -68,7 +73,7 @@ exports.createCustomButton = function(opts){
         width:opts.width,
         top:0,
         left:0,
-        color:'#333',
+        color:(opts.color || '#333'),
         shadowColor:'#fff',
         font:{
           fontWeight:'bold',
@@ -151,7 +156,7 @@ exports.createTabBar = function(opts){
   var width = Math.round(opts.width/opts.labels.length);
   tabBar.buttons = [];
   _(opts.labels).each(function(label,i){
-    var button = coltan.UI.createCustomButton({
+    var button = Coltan.UI.createCustomButton({
       type:'tabBar',
       borderWidth:0,
       borderRadius:opts.borderRadius,

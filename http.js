@@ -140,7 +140,7 @@ Coltan.HTTP.APIClient.prototype.executeRequest = function(obj,fn) {
       fn(xhrError);
     }
   });
-  xhr.setTimeout(15000);
+  xhr.setTimeout(20000);
   if(this.methodOverride){
     if (obj.method !== 'GET') {
       obj.params._method = obj.method;
@@ -150,6 +150,7 @@ Coltan.HTTP.APIClient.prototype.executeRequest = function(obj,fn) {
     fullUrl += (obj.params != null ? '?' + this._querystringify(obj.params) : '');
     self._debug('full url: ' + obj.method + ' ' + fullUrl);
     xhr.open('GET', fullUrl);
+    xhr.setTimeout(20000);
     xhr.send();
   } else {
     self._info('making api request to ' + obj.uri + ' endpoint with method override');
