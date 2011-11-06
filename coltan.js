@@ -31,7 +31,18 @@ Ti.include('ui/ui.js');
 Ti.include('map/map.js');
 Ti.include('events.js');
 Ti.include('apps.js');
-Ti.include('apn.js');
 Ti.include('coltan-backbone.js');
+Coltan.APN = require('coltan/apn');
 
-Coltan.info('`Coltan` resources successfully loaded');
+var mods = [];
+for(m in Coltan){
+  mods.push(m);
+}
+
+Ti.API.info('`Coltan` resources successfully loaded with the following modules: ')
+Ti.API.info(mods.join(', '));
+
+if (typeof module !== 'undefined' && module.exports) {
+} else {
+  var exports = Coltan;
+}
