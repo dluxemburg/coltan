@@ -15,7 +15,7 @@ Coltan.HTTP = {};
 
 Coltan.HTTP.APIClient = function(opts){
   if(!opts.baseUrl){ 
-    throw new Error('APIClient: Must specify base URL');
+    throw new Error('APIClient: Must specify base URL. Evals to: '+opts.baseUrl);
   }
   this.baseUrl = opts.baseUrl;
   this.methodOverride = opts.methodOverride || false;
@@ -117,6 +117,10 @@ Coltan.HTTP.APIClient.prototype._checkConnection = function() {
 };
 
 Coltan.HTTP.APIClient.prototype.executeRequest = function(obj,fn) {
+  if(!this._checkConnection()){
+    return fn({message:this.noConnectionMessage});
+  }
+  
   var self = this; var fullUrl;
   
   obj.method = obj.method || 'GET';

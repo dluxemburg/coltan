@@ -45,25 +45,22 @@ exports.addWindowMessages = function(window,options){
   }); 
   window.messageWin.add(window.messageView);
   window.messageWin.add(window.messageLabel);
-  window.addEventListener('pop_message',popMessageHandler);
-  
-}
-
-var popMessageHandler = function(event){
-  var self = this;
-  var durationShow = event.durationShow || self.messageWin.durationShow;
-  var durationFade = event.durationFade || self.messageWin.durationFade;
-  var anim = Ti.UI.createAnimation({
-    duration:durationFade,
-    opacity:0
-  })
-  self.messageLabel.text = event.message;   
-  self.opacity = 1;
-  self.messageWin.open();
-  setTimeout(function(){
-    self.messageWin.animate(anim);
+  window.addEventListener('pop_message',function(event){
+    var self = _.isIos() ? this : window;
+    var durationShow = event.durationShow || self.messageWin.durationShow;
+    var durationFade = event.durationFade || self.messageWin.durationFade;
+    var anim = Ti.UI.createAnimation({
+      duration:durationFade,
+      opacity:0
+    })
+    self.messageLabel.text = event.message;   
+    self.opacity = 1;
+    self.messageWin.open();
     setTimeout(function(){
-      self.messageWin.close();
-    },durationFade);
-  },durationShow);
-};
+      self.messageWin.animate(anim);
+      setTimeout(function(){
+        self.messageWin.close();
+      },durationFade);
+    },durationShow);
+  });
+}; 

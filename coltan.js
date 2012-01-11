@@ -32,7 +32,8 @@ Ti.include('map/map.js');
 Ti.include('events.js');
 Ti.include('apps.js');
 Ti.include('coltan-backbone.js');
-Coltan.APN = require('coltan/apn');
+//Coltan.APN = require('coltan/apn');
+if(_.isIos()) Ti.include('apn.js');
 
 var mods = [];
 for(m in Coltan){

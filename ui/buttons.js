@@ -85,6 +85,9 @@ exports.createCustomButton = function(opts){
           y:1
         }
     });
+    button.labelProperties = function(props){
+      _.extend(button.label,props);
+    }
   }else if(opts.image){
     button.label = Ti.UI.createImageView({
       touchEnabled:false,

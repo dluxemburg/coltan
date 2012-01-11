@@ -91,7 +91,8 @@ Coltan.Events.createProxy = function(proxy){
   
   proxy.handleDelegate = function(selector,eventName,method){
     proxy.bind(eventName,function(event){
-      if(event.source.name === selector) method(event);
+      Ti.API.debug(event);
+      if(event.source && event.source.name === selector) method(event);
     });
   };
   

@@ -12,7 +12,7 @@ Coltan.Geo.getCurrentLocation = function(fn,purpose){
   Ti.Geolocation.getCurrentPosition(function(e) {
     var coords;
     if (!e.success || e.error) {
-      if (Ti.Platform.model === 'google_sdk' || Ti.Geolocation.locationServicesEnabled === false) {
+      if (true || Ti.Platform.model === 'google_sdk' || Ti.Geolocation.locationServicesEnabled === false) {
         Coltan.info('in android simulator, using hard-coded location fixture');
         coords = {
           latitude: 40.7298602,
